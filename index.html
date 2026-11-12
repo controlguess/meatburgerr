@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080910">
+<title>Pisser</title>
+<link rel="favicon" href="favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{color-scheme:dark;--bg:#080910;--panel:rgba(17,19,31,.78);--line:rgba(255,255,255,.09);--muted:#8b8da2;--text:#f4f4fb;--purple:#9c72ff;--cyan:#65e7ed}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,rgba(118,76,255,.22),transparent 42%),radial-gradient(ellipse at 90% 65%,rgba(49,210,222,.08),transparent 35%),var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:46px 46px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+.wrap{width:min(1100px,calc(100% - 40px));margin:auto;position:relative}.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.16em;font-size:14px}.brandmark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#a779ff,#5a43bc);box-shadow:0 0 28px #8c62ff55;font-size:18px}
+.topmeta{font:11px 'DM Mono',monospace;color:var(--muted);letter-spacing:.08em}.live{display:inline-flex;align-items:center;gap:8px;color:#9de6c3}.dot{width:7px;height:7px;border-radius:50%;background:#64e6a8;box-shadow:0 0 12px #64e6a8;animation:pulse 1.8s infinite}
+.hero{text-align:center;padding:82px 0 54px}.eyebrow{font:11px 'DM Mono',monospace;color:var(--cyan);letter-spacing:.22em;text-transform:uppercase}.hero h1{font-size:clamp(42px,8vw,76px);line-height:.98;letter-spacing:-.065em;margin:18px 0;background:linear-gradient(100deg,#fff 15%,#c8b8ff 55%,#6be4e9);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:15px;line-height:1.7;max-width:560px;margin:18px auto 0}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;margin:0 0 16px}.sectionhead h2{font-size:14px;letter-spacing:.13em;text-transform:uppercase;margin:0}.sectionhead span{font:10px 'DM Mono',monospace;color:var(--muted)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(24,26,42,.92),rgba(12,14,23,.88));padding:27px;min-height:350px;box-shadow:0 20px 80px #0003;transition:transform .25s,border-color .25s}.card:not(.disabled):hover{transform:translateY(-5px);border-color:#9c72ff88}.card:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;filter:blur(75px);opacity:.15;right:-100px;top:-110px;background:var(--glow)}.card.pro{--glow:#8e5cff}.card.legacy{--glow:#ff6262}.cardtop{display:flex;align-items:center;justify-content:space-between;position:relative}.version{font:10px 'DM Mono',monospace;color:var(--muted);letter-spacing:.14em}.tag{font:10px 'DM Mono',monospace;letter-spacing:.08em;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,.06);border:1px solid var(--line)}.tag.recommended{color:#c9b5ff;border-color:#9c72ff66;background:#9c72ff16}.tag.detected{color:#ff9b9b;border-color:#ff666655;background:#ff626211}.card h3{font-size:32px;letter-spacing:-.04em;margin:28px 0 8px;position:relative}.card .desc{color:var(--muted);font-size:13px;line-height:1.65;min-height:44px;position:relative}.features{list-style:none;padding:0;margin:23px 0 25px;display:grid;gap:11px;position:relative}.features li{font-size:12px;color:#c9cada;display:flex;gap:10px;align-items:center}.features li:before{content:"✦";font-size:10px;color:var(--cyan)}.install{width:100%;height:48px;border:0;border-radius:11px;background:linear-gradient(100deg,#9b72ff,#6c62e9);color:white;font:600 13px 'Space Grotesk';cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 8px 28px #8e5cff30;transition:filter .2s,transform .2s;position:relative}.install:hover{filter:brightness(1.13);transform:translateY(-2px)}.install:active{transform:translateY(0)}.disabled{opacity:.53;filter:saturate(.45);border-style:dashed}.disabled:hover{transform:none}.disabled .install{background:#272936;color:#777b8d;box-shadow:none;cursor:not-allowed;pointer-events:none}.disabled .features li:before{color:#ff7777}.notice{margin-top:18px;padding:14px 16px;border:1px solid rgba(255,107,107,.2);border-radius:12px;background:rgba(255,80,80,.055);color:#d9a4a4;font-size:11px;line-height:1.6}.steps{margin:66px 0 0}.steps h2{font-size:14px;letter-spacing:.13em;text-transform:uppercase;margin:0 0 18px}.stepgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{padding:19px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}.num{font:11px 'DM Mono',monospace;color:var(--cyan)}.step strong{display:block;font-size:13px;margin:10px 0 5px}.step p{font-size:11px;line-height:1.6;color:var(--muted);margin:0}.footer{border-top:1px solid var(--line);margin-top:70px;padding:23px 0 34px;display:flex;justify-content:space-between;gap:12px;color:#66697d;font:10px 'DM Mono',monospace;letter-spacing:.05em}.footer a{color:#aaa0d7;text-decoration:none}
+@keyframes pulse{50%{opacity:.45;box-shadow:0 0 3px #64e6a8}}@media(max-width:700px){.hero{padding:62px 0 42px}.cards{grid-template-columns:1fr}.card{min-height:0}.stepgrid{grid-template-columns:1fr}.topmeta{font-size:9px}.footer{flex-direction:column}.wrap{width:min(100% - 28px,600px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topbar">
+  <div class="brand"><div class="brandmark">ϟ</div><span>PISSER</span></div>
+  <div class="topmeta"><span class="live"><i class="dot"></i> BETA</span></div>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">@hugkiro on Discord</div>
+    <h1>COMPLETELY UNDETECTED</h1>
+    <p>The best current script for Blast Block, installed through Tampermonkey.</p>
+  </section>
+  <section>
+    <div class="sectionhead"><h2>Available builds</h2><span>01 / 02 BUILDS ACTIVE</span></div>
+    <div class="cards">
+      <article class="card pro">
+        <div class="cardtop"><span class="version">BUILD 02 · CURRENT</span><span class="tag recommended">✦ RECOMMENDED</span></div>
+        <h3>Pisser Pro</h3>
+        <p class="desc">The current release. Install the Pro userscript directly from Greasy Fork.</p>
+        <ul class="features">
+          <li>Current Pro release</li>
+          <li>Greasy Fork hosted update channel</li>
+          <li>Installs through Tampermonkey</li>
+        </ul>
+        <a class="install" href="https://update.greasyfork.org/scripts/605041/Pisser%20Pro.user.js" target="_blank" rel="noopener noreferrer">↗ INSTALL PISSER PRO</a>
+      </article>
+      <article class="card legacy disabled" aria-disabled="true">
+        <div class="cardtop"><span class="version">BUILD 01 · LEGACY</span><span class="tag detected">⚠ DETECTED</span></div>
+        <h3>Pisser Legacy</h3>
+        <p class="desc">The legacy build is disabled on this page. It is not available for installation.</p>
+        <ul class="features">
+          <li>Legacy build disabled</li>
+          <li>Install action unavailable</li>
+          <li>Use Pro for the current release</li>
+        </ul>
+        <button class="install" type="button" disabled>⊘ LEGACY DISABLED</button>
+        <div class="notice"><strong>DETECTED BUILD</strong><br>Legacy has been flagged as detected. Do not use this build while logged in. The install option is intentionally disabled.</div>
+      </article>
+    </div>
+  </section>
+  <section class="steps">
+    <h2>Quick installation</h2>
+    <div class="stepgrid">
+      <div class="step"><span class="num">STEP 01</span><strong>Install Tampermonkey</strong><p>Add the Tampermonkey extension to your browser if it is not already installed.</p></div>
+      <div class="step"><span class="num">STEP 02</span><strong>Choose Pro</strong><p>Use the active Pro install button above to open the official Greasy Fork userscript.</p></div>
+      <div class="step"><span class="num">STEP 03</span><strong>Confirm installation</strong><p>Review the userscript details in Tampermonkey and confirm if you trust the source.</p></div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><span>PISSER IS BANNABLE · COMMUNITY PROJECT</span><span><a href="https://greasyfork.org/en/scripts/605041-pisser-pro" target="_blank" rel="noopener noreferrer">GREASY FORK SOURCE ↗</a> · USE AT YOUR OWN RISK</span></footer>
+</div>
+</body>
+</html>
